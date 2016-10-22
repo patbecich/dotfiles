@@ -21,10 +21,20 @@
  (setenv "PATH" (concat (getenv "PATH") ":/opt/local/bin"))
     (setq exec-path (append exec-path '("/opt/local/bin")))
 
+ (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+    (setq exec-path (append exec-path '("/usr/local/bin")))
+
 (global-set-key (kbd "C-c b") 'windmove-left)
 (global-set-key (kbd "C-c f") 'windmove-right)
 (global-set-key (kbd "C-c p") 'windmove-up)
 (global-set-key (kbd "C-c n") 'windmove-down)
+
+
+(set-default-font "Monospace-16")
+
+(add-hook 'dired-mode-hook 'auto-revert-mode)
+
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -37,7 +47,7 @@
  '(markdown-command "/opt/local/bin/pandoc")
  '(package-selected-packages
    (quote
-    (auto-package-update scala-mode pdf-tools paradox markdown-mode magit ensime elpy)))
+    (flycheck-rust rust-mode rustfmt auto-package-update scala-mode pdf-tools paradox markdown-mode magit ensime elpy)))
  '(paradox-github-token t)
  '(tool-bar-mode nil))
 
