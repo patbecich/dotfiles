@@ -18,11 +18,47 @@
 (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
 
 
- (setenv "PATH" (concat (getenv "PATH") ":/opt/local/bin"))
-    (setq exec-path (append exec-path '("/opt/local/bin")))
+(setenv "PATH" (concat (getenv "PATH") ":/opt/local/bin"))
+(setq exec-path (append exec-path '("/opt/local/bin")))
 
- (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
-    (setq exec-path (append exec-path '("/usr/local/bin")))
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+(setq exec-path (append exec-path '("/usr/local/bin")))
+
+(setenv "PATH" (concat (getenv "PATH") ":/Users/patrick/.virtualenv/ENV/bin"))
+(setq exec-path (append exec-path '("/Users/patrick/.virtualenv/ENV/bin")))
+
+(setenv "WORKON_HOME" "/Users/patrick/.virtualenv/")
+
+;; (setq elpy-rpc-python-command "/Users/patrick/.virtualenv/ENV/bin/python")
+
+;; (defvar my:virtualenv-directory "/Users/patrick/.virtualenv/"
+;;   "The directory of virtualenvs.")
+
+;; (defun my:configure-python-venv ()
+;;   "Set `python-shell-virtualenv-path' to the virtualenv directory."
+;;   (interactive)
+;;   (require 'projectile)
+;;   (let* ((project-name (projectile-project-name))
+;;          (virtualenv-path
+;;           (file-truename
+;;            (concat my:virtualenv-directory project-name))))
+;;     (when (file-directory-p virtualenv-path)
+;;       (setq python-shell-virtualenv-path virtualenv-path))))
+
+;; (defun my:flycheck-python-set-executables ()
+;;   "Set flycheck python executables for the current virtualenv."
+;;   (let ((exec-path (python-shell-calculate-exec-path)))
+;;     (setq-local flycheck-python-pylint-executable (executable-find "pylint"))
+;;     (setq-local flycheck-python-flake8-executable (executable-find "flake8"))))
+
+;; (defun my:flycheck-python-setup ()
+;;   "Setup flycheck for Python with virtualenvs. "
+;;   ;; my:flycheck-python-set-executables uses buffer-local variables
+;;   (add-hook 'hack-local-variables-hook #'my:flycheck-python-set-executables
+;;             nil 'local))
+
+;; (add-hook 'python-mode-hook #'my:configure-python-venv)
+;; (add-hook 'python-mode-hook #'my:flycheck-python-setup)
 
 (global-set-key (kbd "C-c b") 'windmove-left)
 (global-set-key (kbd "C-c f") 'windmove-right)
@@ -44,19 +80,20 @@
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(custom-enabled-themes (quote (tango-dark)))
+ '(haskell-process-type (quote stack-ghci))
  '(markdown-command "/opt/local/bin/pandoc")
  '(package-selected-packages
    (quote
-    (flycheck-rust rust-mode rustfmt auto-package-update scala-mode pdf-tools paradox markdown-mode magit ensime elpy)))
+    (flycheck-haskell haskell-mode pdf-tools restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy)))
  '(paradox-github-token t)
  '(tool-bar-mode nil))
 
 (setq ensime-startup-snapshot-notification nil)
 
-(setq auto-package-update-interval 3)
-(setq auto-package-update-delete-old-versions t)
-(add-hook 'auto-package-update-before-hook
-          (lambda () (message "I will update packages now")))
+;; (setq auto-package-update-interval 3)
+;; (setq auto-package-update-delete-old-versions t)
+;; (add-hook 'auto-package-update-before-hook
+;;           (lambda () (message "I will update packages now")))
 
 (add-hook 'prog-mode-hook 'linum-mode)
 (setq linum-format "%d ")
@@ -73,3 +110,14 @@
  ;; If there is more than one, they won't work right.
  )
 (put 'erase-buffer 'disabled nil)
+
+;; https://github.com/jorgenschaefer/elpy/issues/887
+(setq python-shell-prompt-detect-failure-warning nil)
+
+
+(setq haskell-program-name "/Users/patrick/.stack/programs/x86_64-osx/ghc-8.0.1/bin/ghci")
+
+
+(setq dired-listing-switches "-alk")
+
+(setq haskell-process-args-stack-ghci '("--ghci-options=-ferror-spans"))
