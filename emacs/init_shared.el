@@ -75,7 +75,7 @@
 (setq magit-auto-revert-mode 1)
 (global-set-key (kbd "C-x g") 'magit-status)
 
-(paradox-upgrade-packages)
+;; (paradox-upgrade-packages)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
