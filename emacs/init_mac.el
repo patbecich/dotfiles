@@ -20,6 +20,7 @@
 (setenv "WORKON_HOME" "/Users/patrick/.virtualenv/")
 
 (add-to-list 'load-path "~/.emacs.d/elisp/")
+(add-to-list 'load-path "~/dotfiles/emacs/elisp/")
 
 (require 'no-easy-keys)
 (no-easy-keys 1)
