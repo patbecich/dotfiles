@@ -61,6 +61,10 @@
 
 
 
+(autoload 'ghc-init "ghc" nil t)
+(autoload 'ghc-debug "ghc" nil t)
+(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+
 
 (setq ensime-startup-snapshot-notification nil)
 
@@ -89,7 +93,7 @@
 (setq python-shell-prompt-detect-failure-warning nil)
 
 
-(setq haskell-program-name "/Users/patrick/.stack/programs/x86_64-osx/ghc-8.0.1/bin/ghci")
+;; (setq haskell-program-name "/Users/patrick/.stack/programs/x86_64-osx/ghc-8.0.1/bin/ghci")
 
 
 (setq dired-listing-switches "-alk")
@@ -98,7 +102,11 @@
 
 
 
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+;; (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 
-(add-hook 'haskell-mode-hook 'haskell-indent-mode)
-(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+;; (add-hook 'haskell-mode-hook 'haskell-indent-mode)
+;; (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+
+(add-hook 'haskell-mode-hook 'intero-mode)
+
+

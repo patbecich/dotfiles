@@ -15,9 +15,18 @@
 (setenv "PATH" (concat (getenv "PATH") ":/Users/patrick/.virtualenv/ENV/bin"))
 (setq exec-path (append exec-path '("/Users/patrick/.virtualenv/ENV/bin")))
 
+(setq exec-path (append exec-path '("/Users/patrick/.local/bin/")))
+
 (setenv "WORKON_HOME" "/Users/patrick/.virtualenv/")
 
+(add-to-list 'load-path "~/.emacs.d/elisp/")
+
+(require 'no-easy-keys)
+(no-easy-keys 1)
+
+
 (load "~/dotfiles/emacs/init_shared.el")
+
 
 
 (custom-set-variables
@@ -33,7 +42,7 @@
  '(markdown-command "/opt/local/bin/pandoc")
  '(package-selected-packages
    (quote
-    (flycheck-haskell haskell-mode pdf-tools restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy)))
+    (intero flycheck-haskell haskell-mode pdf-tools restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy)))
  '(paradox-github-token t)
  '(tool-bar-mode nil))
 
