@@ -129,3 +129,13 @@
 (add-hook 'compilation-filter-hook
           'comint-truncate-buffer)
 (setq comint-buffer-maximum-size 20100)
+
+
+
+(setq comint-scroll-to-bottom-on-input t)
+(setq comint-scroll-to-bottom-on-output t)
+(setq comint-move-point-for-output t)
+
+(yas-global-mode 1)
+
+(setq magit-auto-revert-mode 1)
