@@ -110,3 +110,22 @@
 (add-hook 'haskell-mode-hook 'intero-mode)
 
 
+
+(defun my/truncate-eshell-buffers ()
+  "Truncates all eshell buffers"
+  (interactive)
+  (save-current-buffer
+    (dolist (buffer (buffer-list t))
+      (set-buffer buffer)
+      (when (eq major-mode 'eshell-mode)
+        (eshell-truncate-buffer)))))
+
+;; After being idle for 5 seconds, truncate all the eshell-buffers if
+;; needed. If this needs to be canceled, you can run `(cancel-timer
+;; my/eshell-truncate-timer)'
+(setq my/eshell-truncate-timer
+      (run-with-idle-timer 5 t #'my/truncate-eshell-buffers))
+
+(add-hook 'compilation-filter-hook
+          'comint-truncate-buffer)
+(setq comint-buffer-maximum-size 20100)
