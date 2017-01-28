@@ -27,8 +27,9 @@
 
 
 (load "~/dotfiles/emacs/init_shared.el")
+(load "~/dotfiles/emacs/init_private.el")
 
-
+(global-wakatime-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -43,7 +44,7 @@
  '(markdown-command "/opt/local/bin/pandoc")
  '(package-selected-packages
    (quote
-    (intero flycheck-haskell haskell-mode pdf-tools restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy)))
+    (wakatime-mode haskell-snippets intero flycheck-haskell haskell-mode pdf-tools restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy)))
  '(paradox-github-token t)
  '(tool-bar-mode nil))
 
