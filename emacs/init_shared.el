@@ -139,3 +139,4 @@
 (yas-global-mode 1)
 
 (setq magit-auto-revert-mode 1)
+

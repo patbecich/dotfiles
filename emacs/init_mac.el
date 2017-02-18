@@ -31,6 +31,11 @@
 
 (global-wakatime-mode)
 
+
+(setq erc-autojoin-channels-alist
+      '(("freenode.net" "#haskell-beginners" "#haskell" "#emacs" "##javascript" "#scala" "#scalaz" "#web" "#postgresql")))
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -39,12 +44,16 @@
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(custom-enabled-themes (quote (tango-dark)))
+ '(erc-hide-list (quote ("JOIN" "PART" "QUIT")))
+ '(erc-join-buffer (quote bury))
+ '(erc-notifications-mode t)
+ '(erc-track-position-in-mode-line t)
  '(haskell-process-type (quote stack-ghci))
  '(haskell-stylish-on-save t)
  '(markdown-command "/opt/local/bin/pandoc")
  '(package-selected-packages
    (quote
-    (wakatime-mode haskell-snippets intero flycheck-haskell haskell-mode pdf-tools restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy)))
+    (erc-colorize wakatime-mode haskell-snippets intero flycheck-haskell haskell-mode pdf-tools restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy)))
  '(paradox-github-token t)
  '(tool-bar-mode nil))
 
