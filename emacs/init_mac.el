@@ -53,7 +53,7 @@
  '(markdown-command "/opt/local/bin/pandoc")
  '(package-selected-packages
    (quote
-    (erc-colorize wakatime-mode haskell-snippets intero flycheck-haskell haskell-mode pdf-tools restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy)))
+    (yaml-mode erc-colorize wakatime-mode haskell-snippets intero flycheck-haskell haskell-mode pdf-tools restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy)))
  '(paradox-github-token t)
  '(tool-bar-mode nil))
 
