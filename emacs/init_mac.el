@@ -35,6 +35,9 @@
 (setq erc-autojoin-channels-alist
       '(("freenode.net" "#haskell-beginners" "#haskell" "#emacs" "##javascript" "#scala" "#scalaz" "#web" "#postgresql")))
 
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-hook 'haskell-mode-hook 'intero-mode)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -53,7 +56,7 @@
  '(markdown-command "/opt/local/bin/pandoc")
  '(package-selected-packages
    (quote
-    (yaml-mode erc-colorize wakatime-mode haskell-snippets intero flycheck-haskell haskell-mode pdf-tools restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy)))
+    (js2-mode pdf-tools auctex auctex-latexmk latex-extra yaml-mode erc-colorize wakatime-mode haskell-snippets intero flycheck-haskell haskell-mode restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy)))
  '(paradox-github-token t)
  '(tool-bar-mode nil))
 
