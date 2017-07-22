@@ -62,8 +62,9 @@
  '(markdown-command "/opt/local/bin/pandoc")
  '(package-selected-packages
    (quote
-    (irony js2-mode pdf-tools auctex auctex-latexmk latex-extra yaml-mode erc-colorize wakatime-mode haskell-snippets intero flycheck-haskell haskell-mode restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy)))
+    (ess-smart-underscore ess irony js2-mode pdf-tools auctex auctex-latexmk latex-extra yaml-mode erc-colorize wakatime-mode haskell-snippets intero flycheck-haskell haskell-mode restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy)))
  '(paradox-github-token t)
+ '(python-shell-interpreter "/Users/patrick/.virtualenv/ENV/bin/python3.6")
  '(tool-bar-mode nil))
 
 (custom-set-faces

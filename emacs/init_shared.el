@@ -11,9 +11,10 @@
 
 (desktop-save-mode 0)
 
-;;(pdf-tools-install)
 
 (require 'pdf-tools)
+
+(pdf-tools-install)
 
 (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
 
