@@ -1,4 +1,11 @@
 
+# export EDITOR="/Applications/MacPorts/Emacs.app/Contents/MacOS/bin/emacsclient"
+# export EDITOR="emacs-nw"
+
+# export ALTERNATE_EDITOR=""
+# export EDITOR="emacs-nw"
+# export VISUAL="emacs-nw"
+
 ##https://github.com/politza/pdf-tools#compiling-on-os-x
 export PKG_CONFIG_PATH=/opt/local/lib/pkgconfig
 
@@ -19,7 +26,13 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # Finished adapting your PATH environment variable for use with MacPorts.
 
 export PATH="/Users/patrick/.local/bin":$PATH
-export PATH="~/.cabal/bin":$PATH
+export PATH="/Users/patrick/.cabal/bin":$PATH
+
+export PATH="/Users/patrick/bin":$PATH
+
+export PATH="/Applications/MacPorts/Emacs.app/Contents/MacOS/bin":$PATH
+
+
 
 export PATH=$PATH:"/opt/local/lib/postgresql96/bin/"
 
