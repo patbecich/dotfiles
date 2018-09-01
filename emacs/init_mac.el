@@ -1,3 +1,41 @@
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default)))
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(auto-revert-verbose nil)
+ '(custom-enabled-themes (quote (tango-dark)))
+ '(erc-hide-list (quote ("JOIN" "PART" "QUIT")))
+ '(erc-join-buffer (quote bury))
+ '(erc-notifications-mode t)
+ '(erc-track-position-in-mode-line t)
+ '(haskell-process-type (quote stack-ghci))
+ '(haskell-stylish-on-save t)
+ '(markdown-command "/opt/local/bin/pandoc")
+ '(package-selected-packages
+   (quote
+    (smart-mode-line counsel counsel-etags counsel-projectile git-timemachine swiper nlinum smex flx-ido flycheck-clang-analyzer omnisharp projectile csharp-mode ag auto-compile highlight-thing smartparens elscreen company-c-headers ws-butler rainbow-delimiters irony-eldoc company-rtags company-irony-c-headers company-irony use-package ess-smart-underscore ess irony js2-mode pdf-tools auctex-latexmk latex-extra yaml-mode erc-colorize wakatime-mode haskell-snippets intero flycheck-haskell haskell-mode restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy)))
+ '(paradox-github-token t)
+ '(pdf-view-display-size (quote fit-page))
+ '(python-shell-interpreter "/Users/patrick/.virtualenv/3.7/bin/python3")
+ '(tool-bar-mode nil)
+ '(wakatime-python-bin nil))
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+
+
 (require 'gnutls)
 (add-to-list 'gnutls-trustfiles "/opt/local/etc/openssl/cert.pem")
 
@@ -36,8 +74,8 @@
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setq exec-path (append exec-path '("/usr/local/bin")))
 
-(setenv "PATH" (concat (getenv "PATH") ":/Users/patrick/.virtualenv/ENV/bin"))
-(setq exec-path (append exec-path '("/Users/patrick/.virtualenv/ENV/bin")))
+(setenv "PATH" (concat (getenv "PATH") ":/Users/patrick/.virtualenv/3.7/bin"))
+(setq exec-path (append exec-path '("/Users/patrick/.virtualenv/3.7/bin")))
 
 (setq exec-path (append exec-path '("/Users/patrick/.local/bin/")))
 
@@ -65,12 +103,13 @@
 (use-package js2-mode :ensure t)
 (use-package pdf-tools :ensure t)
 (use-package rainbow-delimiters :ensure t)
-;; (use-package rustfmt)
 (use-package smartparens :ensure t)
 (use-package wakatime-mode :ensure t)
 (use-package ws-butler :ensure t)
 (use-package yaml-mode :ensure t)
 (use-package magit :ensure t)
+(use-package elpy :ensure t)
+(use-package flx-ido :ensure t)
 
 ;; (require 'tls)
 
@@ -99,7 +138,6 @@
 
 (add-hook 'LaTeX-mode-hook '(flyspell-mode t))
 
-(load "~/dotfiles/emacs/init_shared.el")
 (load "~/dotfiles/emacs/init_private.el")
 
 (global-wakatime-mode)
@@ -126,42 +164,11 @@
 (projectile-global-mode)
 
 (load "~/dotfiles/emacs/areas/c.el")
+(load "~/dotfiles/emacs/areas/python.el")
 
 
 (require 'smartparens-config)
 (add-hook 'prog-mode-hook #'smartparens-mode)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(auto-revert-verbose nil)
- '(custom-enabled-themes (quote (tango-dark)))
- '(erc-hide-list (quote ("JOIN" "PART" "QUIT")))
- '(erc-join-buffer (quote bury))
- '(erc-notifications-mode t)
- '(erc-track-position-in-mode-line t)
- '(haskell-process-type (quote stack-ghci))
- '(haskell-stylish-on-save t)
- '(markdown-command "/opt/local/bin/pandoc")
- '(package-selected-packages
-   (quote
-    (flx-ido flycheck-clang-analyzer omnisharp projectile csharp-mode ag auto-compile highlight-thing smartparens elscreen company-c-headers ws-butler rainbow-delimiters irony-eldoc company-rtags company-irony-c-headers company-irony use-package ess-smart-underscore ess irony js2-mode pdf-tools auctex-latexmk latex-extra yaml-mode erc-colorize wakatime-mode haskell-snippets intero flycheck-haskell haskell-mode restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy)))
- '(paradox-github-token t)
- '(pdf-view-display-size (quote fit-page))
- '(python-shell-interpreter "/Users/patrick/.virtualenv/ENV/bin/python3.6")
- '(tool-bar-mode nil)
- '(wakatime-python-bin nil))
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 
 
 (require 'pdf-tools)
@@ -170,9 +177,12 @@
 (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
 (desktop-save-mode 1)
 
-(set-default-font "Monospace-16")
+;; (set-default-font "Monospace-16")
 
 (add-hook 'dired-mode-hook 'auto-revert-mode)
+
+
+(require 'magit-todos)
 
 (setq magit-auto-revert-mode 1)
 (global-set-key (kbd "C-x g") 'magit-status)
@@ -211,8 +221,8 @@
 
 
 (require 'flx-ido)
-(ido-mode 1)
-(ido-everywhere 1)
+;; (ido-mode 1)
+;; (ido-everywhere 1)
 (flx-ido-mode 1)
 ;; disable ido faces to see flx highlights.
 (setq ido-enable-flex-matching t)
@@ -221,5 +231,48 @@
 (setq ido-use-filename-at-point 'guess)
 (setq ido-create-new-buffer 'always)
 
+(sml/setup)
+
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(setq enable-recursive-minibuffers t)
+(global-set-key "\C-s" 'swiper)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(global-set-key (kbd "<f6>") 'ivy-resume)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "<f1> f") 'counsel-describe-function)
+(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+(global-set-key (kbd "<f1> l") 'counsel-find-library)
+(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+(global-set-key (kbd "C-c g") 'counsel-git)
+(global-set-key (kbd "C-c j") 'counsel-git-grep)
+(global-set-key (kbd "C-c k") 'counsel-ag)
+(global-set-key (kbd "C-x l") 'counsel-locate)
+(global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+(define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+
+
+
+
+(global-set-key (kbd "C-c b") 'windmove-left)
+(global-set-key (kbd "C-c f") 'windmove-right)
+(global-set-key (kbd "C-c p") 'windmove-up)
+(global-set-key (kbd "C-c n") 'windmove-down)
+
+
+;; (require 'smex) ; Not needed if you use package.el
+;; (smex-initialize) ; Can be omitted. This might cause a (minimal) delay
+;; 					; when Smex is auto-initialized on its first run.
+
+;; (global-set-key (kbd "M-x") 'smex)
+;; (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; This is your old M-x.
+;; (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 (setq gc-cons-threshold 20000000)
+
+
+;; (setq global-nlinum-mode 1)
+(add-hook 'prog-mode-hook 'nlinum-mode)

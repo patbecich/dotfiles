@@ -45,7 +45,7 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 
 # Finished adapting your PATH environment variable for use with MacPorts.
 
-export PATH=/Users/patrick/.virtualenv/ENV/bin/:$PATH
+export PATH=/Users/patrick/.virtualenv/3.7/bin/:$PATH
 
 alias callisto="ssh patbecich@callisto.local"
 

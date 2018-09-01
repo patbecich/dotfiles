@@ -1,6 +1,6 @@
 (add-hook 'c++-mode-hook 'irony-mode)
 (add-hook 'prog-mode-hook 'flycheck-mode)
-(add-hook 'flycheck-mode-hook 'flycheck-list-errors)
+;; (add-hook 'flycheck-mode-hook 'flycheck-list-errors)
 
 (add-hook 'c-mode-hook 'irony-mode)
 (add-hook 'objc-mode-hook 'irony-mode)
