@@ -1,7 +1,7 @@
 (require 'package) ;; You might already have this line
-(require 'tls)
+;; (require 'tls)
 (require 'gnutls)
-(add-to-list 'gnutls-trustfiles "/opt/local/etc/openssl/cert.pem")
+;; (add-to-list 'gnutls-trustfiles "/opt/local/etc/openssl/cert.pem")
 (setq tls-checktrust t)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
@@ -46,7 +46,6 @@
  '(global-git-gutter-mode t)
  '(haskell-process-type (quote stack-ghci))
  '(haskell-stylish-on-save t)
- '(markdown-command "/opt/local/bin/pandoc")
  '(package-selected-packages
    (quote
     (treemacs treemacs-projectile counsel-dash counsel-tramp ivy company-auctex git-gutter-fringe exec-path-from-shell smart-mode-line counsel counsel-etags counsel-projectile git-timemachine swiper nlinum smex flx-ido flycheck-clang-analyzer omnisharp projectile csharp-mode ag auto-compile highlight-thing smartparens elscreen company-c-headers ws-butler rainbow-delimiters irony-eldoc company-rtags company-irony-c-headers company-irony use-package ess-smart-underscore ess irony js2-mode pdf-tools auctex-latexmk latex-extra yaml-mode erc-colorize wakatime-mode haskell-snippets intero flycheck-haskell haskell-mode restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy)))
@@ -57,8 +56,7 @@
    (quote
     ("rebar.config" "project.clj" "build.boot" "deps.edn" "SConstruct" "pom.xml" "build.sbt" "gradlew" "build.gradle" ".ensime" "Gemfile" "requirements.txt" "setup.py" "tox.ini" "composer.json" "Cargo.toml" "mix.exs" "stack.yaml" "info.rkt" "DESCRIPTION" "TAGS" "GTAGS" "configure.in" "configure.ac" "cscope.out" "Assembly-CSharp.csproj")))
  '(projectile-tags-backend (quote auto))
- '(projectile-tags-command "/opt/local/bin/ctags -Re -f \"%s\" %s \"%s\"")
- '(python-shell-interpreter "/Users/patrick/.virtualenv/3.7/bin/python3")
+;; '(projectile-tags-command "/usr/local/bin/ctags -Re -f \"%s\" %s \"%s\"")
  '(tool-bar-mode nil)
  '(wakatime-python-bin nil))
 
@@ -76,21 +74,21 @@
 (setq auto-package-update-delete-old-versions t)
 (setq auto-package-update-hide-results t)
 
-(setenv "PATH" (concat (getenv "PATH") ":/opt/local/bin"))
-(setq exec-path (append exec-path '("/opt/local/bin")))
+;;(setenv "PATH" (concat (getenv "PATH") ":/opt/local/bin"))
+;;(setq exec-path (append exec-path '("/opt/local/bin")))
 
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setq exec-path (append exec-path '("/usr/local/bin")))
 
-(setenv "PATH" (concat (getenv "PATH") ":/Users/patrick/.virtualenv/3.7/bin"))
-(setq exec-path (append exec-path '("/Users/patrick/.virtualenv/3.7/bin")))
+;;(setenv "PATH" (concat (getenv "PATH") ":/Users/patrick/.virtualenv/3.7/bin"))
+;;(setq exec-path (append exec-path '("/Users/patrick/.virtualenv/3.7/bin")))
 
-(setq exec-path (append exec-path '("/Users/patrick/.local/bin/")))
+(setq exec-path (append exec-path '("/home/patrick/.local/bin/")))
 
-(setenv "PATH" (concat "/opt/local/libexec/gnubin/:" (getenv "PATH")))
-(setq exec-path (append '("/opt/local/libexec/gnubin") exec-path ))
+;;(setenv "PATH" (concat "/opt/local/libexec/gnubin/:" (getenv "PATH")))
+;;(setq exec-path (append '("/opt/local/libexec/gnubin") exec-path ))
 
-(setenv "WORKON_HOME" "/Users/patrick/.virtualenv/")
+;;(setenv "WORKON_HOME" "/Users/patrick/.virtualenv/")
 
 (add-to-list 'load-path "~/.emacs.d/elisp/")
 (add-to-list 'load-path "~/dotfiles/emacs/elisp/")
@@ -98,7 +96,7 @@
 (setq use-package-always-ensure t)
 
 (use-package ag :ensure t)
-(use-package auctex :ensure t)
+;;(use-package auctex :ensure t)
 (use-package auctex-latexmk :ensure t)
 (use-package auto-package-update :ensure t)
 (use-package company-auctex :ensure t)
@@ -189,9 +187,9 @@
 (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
 (desktop-save-mode 1)
 
-(set-default-font "Monaco-13")
-(add-to-list 'default-frame-alist
-	     '(font . "Monaco-13"))
+;;(set-default-font "Monaco-13")
+;;(add-to-list 'default-frame-alist
+;;	     '(font . "Monaco-13"))
 
 (add-hook 'dired-mode-hook 'auto-revert-mode)
 
