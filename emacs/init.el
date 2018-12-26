@@ -237,8 +237,8 @@
 (global-set-key (kbd "C-c p") 'windmove-up)
 (global-set-key (kbd "C-c n") 'windmove-down)
 
-;; (setq gc-cons-threshold (eval-when-compile (* 1024 1024 1024)))
-;; (run-with-idle-timer 2 t (lambda () (garbage-collect)))
+(setq gc-cons-threshold (eval-when-compile (* 1024 1024 1024)))
+(run-with-idle-timer 2 t (lambda () (garbage-collect)))
 
 (add-hook 'prog-mode-hook 'nlinum-mode)
 
