@@ -8,7 +8,6 @@
 
 (setq load-prefer-newer t)
 
-
 (require 'auto-compile)
 (auto-compile-on-load-mode)
 (auto-compile-on-save-mode)
@@ -19,10 +18,9 @@
 (if (eq system-type 'gnu/linux)
     (load "~/dotfiles/emacs/init_linux.el")
     )
-(if (eq system-type 'cygwin)
-    (load "~/dotfiles/emacs/init_windows.el")
+(if (eq system-type 'windows-nt)
+    (load "c:/Users/patbe/dotfiles/emacs/init_windows.el")
     )
-
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -52,7 +50,7 @@
  '(haskell-stylish-on-save t)
  '(package-selected-packages
    (quote
-    (git-gutter treemacs treemacs-projectile counsel-dash counsel-tramp ivy company-auctex git-gutter-fringe exec-path-from-shell smart-mode-line counsel counsel-etags counsel-projectile git-timemachine swiper nlinum smex flx-ido flycheck-clang-analyzer omnisharp projectile csharp-mode ag auto-compile highlight-thing smartparens elscreen company-c-headers ws-butler rainbow-delimiters irony-eldoc company-rtags company-irony-c-headers company-irony use-package ess-smart-underscore ess irony js2-mode pdf-tools auctex-latexmk latex-extra yaml-mode erc-colorize wakatime-mode haskell-snippets intero flycheck-haskell haskell-mode restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy)))
+    (magit-todos treemacs treemacs-projectile counsel-dash counsel-tramp ivy company-auctex exec-path-from-shell smart-mode-line counsel counsel-etags counsel-projectile swiper nlinum smex flx-ido flycheck-clang-analyzer omnisharp projectile csharp-mode ag auto-compile highlight-thing smartparens elscreen company-c-headers ws-butler rainbow-delimiters irony-eldoc company-rtags company-irony-c-headers company-irony use-package ess-smart-underscore ess irony js2-mode pdf-tools auctex-latexmk latex-extra yaml-mode erc-colorize wakatime-mode haskell-snippets intero flycheck-haskell haskell-mode restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy)))
  '(paradox-github-token t)
  '(pdf-view-display-size (quote fit-page))
  '(projectile-enable-idle-timer nil)
@@ -60,8 +58,7 @@
    (quote
     ("rebar.config" "project.clj" "build.boot" "deps.edn" "SConstruct" "pom.xml" "build.sbt" "gradlew" "build.gradle" ".ensime" "Gemfile" "requirements.txt" "setup.py" "tox.ini" "composer.json" "Cargo.toml" "mix.exs" "stack.yaml" "info.rkt" "DESCRIPTION" "TAGS" "GTAGS" "configure.in" "configure.ac" "cscope.out" "Assembly-CSharp.csproj")))
  '(projectile-tags-backend (quote auto))
- '(tool-bar-mode nil)
- '(wakatime-python-bin nil))
+ '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -108,8 +105,6 @@
 (use-package ivy :ensure t)
 (use-package js2-mode :ensure t)
 (use-package magit :ensure t)
-(use-package magit-popup :ensure t)
-(use-package magit-todos :ensure t)
 (use-package nlinum :ensure t)
 (use-package omnisharp :ensure t)
 (use-package pdf-tools :ensure t)
@@ -121,6 +116,7 @@
 (use-package wakatime-mode :ensure t)
 (use-package ws-butler :ensure t)
 (use-package yaml-mode :ensure t)
+(use-package git-gutter-fringe :ensure t)
 
 (use-package treemacs
   :ensure t
@@ -135,7 +131,6 @@
 
 (elscreen-start)
 
-
 (add-hook 'after-init-hook 'global-company-mode)
 
 (eval-when-compile
@@ -143,7 +138,7 @@
 
 (load "~/dotfiles/emacs/init_private.el")
 
-(global-wakatime-mode)
+(setq global-wakatime-mode t)
 (global-flycheck-mode)
 
 (require 'highlight-thing)
@@ -162,7 +157,6 @@
 (load "~/dotfiles/emacs/areas/python.el")
 (load "~/dotfiles/emacs/areas/csharp.el")
 
-
 (require 'smartparens-config)
 (add-hook 'prog-mode-hook #'smartparens-mode)
 
@@ -178,15 +172,10 @@
 
 (add-hook 'dired-mode-hook 'auto-revert-mode)
 
-
-(require 'magit-todos)
-
-(setq magit-auto-revert-mode 1)
+(setq magit-auto-revert-mode t)
 (global-set-key (kbd "C-x g") 'magit-status)
 
 (add-hook 'haskell-mode-hook 'intero-mode)
-
-
 
 (defun my/truncate-eshell-buffers ()
   "Truncates all eshell buffers"
@@ -248,13 +237,10 @@
 (global-set-key (kbd "C-c p") 'windmove-up)
 (global-set-key (kbd "C-c n") 'windmove-down)
 
-(setq gc-cons-threshold (eval-when-compile (* 1024 1024 1024)))
-(run-with-idle-timer 2 t (lambda () (garbage-collect)))
+;; (setq gc-cons-threshold (eval-when-compile (* 1024 1024 1024)))
+;; (run-with-idle-timer 2 t (lambda () (garbage-collect)))
 
 (add-hook 'prog-mode-hook 'nlinum-mode)
-
-(require 'git-gutter-fringe)
-(setq global-git-commit-mode t)
 
 (add-hook 'prog-mode-hook #'ws-butler-mode)
 
@@ -262,4 +248,3 @@
 (add-hook 'TeX-mode-hook 'flyspell-mode); Enable Flyspell mode for TeX modes such as AUCTeX. Highlights all misspelled words.
 
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-
