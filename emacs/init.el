@@ -50,7 +50,7 @@
  '(haskell-stylish-on-save t)
  '(package-selected-packages
    (quote
-    (vterm dockerfile-mode docker-compose-mode docker keychain-environment magit-todos treemacs treemacs-projectile counsel-dash counsel-tramp ivy company-auctex exec-path-from-shell smart-mode-line counsel counsel-etags counsel-projectile swiper nlinum smex flx-ido flycheck-clang-analyzer omnisharp projectile csharp-mode ag auto-compile highlight-thing smartparens elscreen company-c-headers ws-butler rainbow-delimiters irony-eldoc company-rtags company-irony-c-headers company-irony use-package ess-smart-underscore ess irony js2-mode pdf-tools auctex-latexmk latex-extra yaml-mode erc-colorize wakatime-mode haskell-snippets intero flycheck-haskell haskell-mode restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy)))
+    (vterm dockerfile-mode docker-compose-mode docker keychain-environment magit-todos treemacs treemacs-projectile counsel-dash counsel-tramp ivy company-auctex exec-path-from-shell smart-mode-line counsel counsel-etags counsel-projectile swiper nlinum smex flx-ido flycheck-clang-analyzer omnisharp projectile csharp-mode ag auto-compile highlight-thing smartparens elscreen company-c-headers ws-butler rainbow-delimiters irony-eldoc company-rtags company-irony-c-headers company-irony use-package ess-smart-underscore ess irony js2-mode pdf-tools auctex-latexmk latex-extra yaml-mode erc-colorize wakatime-mode haskell-snippets intero flycheck-haskell haskell-mode restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy nov persistent-scratch magit-todos treemacs treemacs-projectile counsel-dash counsel-tramp ivy company-auctex exec-path-from-shell smart-mode-line counsel counsel-etags counsel-projectile swiper nlinum smex flx-ido flycheck-clang-analyzer omnisharp projectile csharp-mode ag auto-compile highlight-thing smartparens elscreen company-c-headers ws-butler rainbow-delimiters irony-eldoc company-rtags company-irony-c-headers company-irony use-package ess-smart-underscore ess irony js2-mode pdf-tools auctex-latexmk latex-extra yaml-mode erc-colorize wakatime-mode haskell-snippets intero flycheck-haskell haskell-mode restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy)))
  '(paradox-github-token t)
  '(pdf-view-display-size (quote fit-page))
  '(projectile-enable-idle-timer nil)
@@ -117,6 +117,8 @@
 (use-package ws-butler :ensure t)
 (use-package yaml-mode :ensure t)
 (use-package git-gutter-fringe :ensure t)
+(use-package nov :ensure t)
+(use-package persistent-scratch :ensure t)
 
 (use-package treemacs
   :ensure t
@@ -256,3 +258,7 @@
 
 (when (version<= "26.0.50" emacs-version )
   (global-display-line-numbers-mode))
+
+(persistent-scratch-setup-default)
+
+(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
