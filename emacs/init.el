@@ -50,7 +50,7 @@
  '(haskell-stylish-on-save t)
  '(package-selected-packages
    (quote
-    (magit-todos treemacs treemacs-projectile counsel-dash counsel-tramp ivy company-auctex exec-path-from-shell smart-mode-line counsel counsel-etags counsel-projectile swiper nlinum smex flx-ido flycheck-clang-analyzer omnisharp projectile csharp-mode ag auto-compile highlight-thing smartparens elscreen company-c-headers ws-butler rainbow-delimiters irony-eldoc company-rtags company-irony-c-headers company-irony use-package ess-smart-underscore ess irony js2-mode pdf-tools auctex-latexmk latex-extra yaml-mode erc-colorize wakatime-mode haskell-snippets intero flycheck-haskell haskell-mode restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy)))
+    (vterm dockerfile-mode docker-compose-mode docker keychain-environment magit-todos treemacs treemacs-projectile counsel-dash counsel-tramp ivy company-auctex exec-path-from-shell smart-mode-line counsel counsel-etags counsel-projectile swiper nlinum smex flx-ido flycheck-clang-analyzer omnisharp projectile csharp-mode ag auto-compile highlight-thing smartparens elscreen company-c-headers ws-butler rainbow-delimiters irony-eldoc company-rtags company-irony-c-headers company-irony use-package ess-smart-underscore ess irony js2-mode pdf-tools auctex-latexmk latex-extra yaml-mode erc-colorize wakatime-mode haskell-snippets intero flycheck-haskell haskell-mode restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy)))
  '(paradox-github-token t)
  '(pdf-view-display-size (quote fit-page))
  '(projectile-enable-idle-timer nil)
@@ -64,7 +64,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:family "Courier New" :foundry "outline" :slant normal :weight normal :height 143 :width normal)))))
 
 (use-package auto-package-update)
 (auto-package-update-maybe)
@@ -105,7 +105,7 @@
 (use-package ivy :ensure t)
 (use-package js2-mode :ensure t)
 (use-package magit :ensure t)
-(use-package nlinum :ensure t)
+;;(use-package nlinum :ensure t)
 (use-package omnisharp :ensure t)
 (use-package pdf-tools :ensure t)
 (use-package projectile :ensure t)
@@ -129,7 +129,9 @@
     (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
   )
 
-(elscreen-start)
+;;(elscreen-start)
+
+
 
 (add-hook 'after-init-hook 'global-company-mode)
 
@@ -143,6 +145,7 @@
 
 (require 'highlight-thing)
 (add-hook 'prog-mode-hook 'highlight-thing-mode)
+;;(add-hook 'prog-mode-hook 'wakatime-mode)
 
 (setq highlight-thing-exclude-thing-under-point t)
 (setq highlight-thing-case-sensitive-p t)
@@ -160,9 +163,9 @@
 (require 'smartparens-config)
 (add-hook 'prog-mode-hook #'smartparens-mode)
 
-(require 'pdf-tools)
+;;(require 'pdf-tools)
 
-(pdf-tools-install)
+;;(pdf-tools-install)
 (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
 (desktop-save-mode 1)
 
@@ -240,7 +243,7 @@
 (setq gc-cons-threshold (eval-when-compile (* 1024 1024 1024)))
 (run-with-idle-timer 2 t (lambda () (garbage-collect)))
 
-(add-hook 'prog-mode-hook 'nlinum-mode)
+;;(add-hook 'prog-mode-hook 'nlinum-mode)
 
 (add-hook 'prog-mode-hook #'ws-butler-mode)
 
@@ -248,3 +251,8 @@
 (add-hook 'TeX-mode-hook 'flyspell-mode); Enable Flyspell mode for TeX modes such as AUCTeX. Highlights all misspelled words.
 
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
+(keychain-refresh-environment)
+
+(when (version<= "26.0.50" emacs-version )
+  (global-display-line-numbers-mode))
