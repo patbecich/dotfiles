@@ -40,17 +40,19 @@
  '(custom-safe-themes
    (quote
     ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default)))
+ '(elpy-rpc-python-command "python3")
  '(erc-hide-list (quote ("JOIN" "PART" "QUIT")))
  '(erc-join-buffer (quote bury))
  '(erc-notifications-mode t)
  '(erc-track-position-in-mode-line t t)
  '(fringe-mode (quote (nil . 0)) nil (fringe))
+ '(global-auto-revert-mode t)
  '(global-git-gutter-mode t)
  '(haskell-process-type (quote stack-ghci))
  '(haskell-stylish-on-save t)
  '(package-selected-packages
    (quote
-    (nov persistent-scratch magit-todos treemacs treemacs-projectile counsel-dash counsel-tramp ivy company-auctex exec-path-from-shell smart-mode-line counsel counsel-etags counsel-projectile swiper nlinum smex flx-ido flycheck-clang-analyzer omnisharp projectile csharp-mode ag auto-compile highlight-thing smartparens elscreen company-c-headers ws-butler rainbow-delimiters irony-eldoc company-rtags company-irony-c-headers company-irony use-package ess-smart-underscore ess irony js2-mode pdf-tools auctex-latexmk latex-extra yaml-mode erc-colorize wakatime-mode haskell-snippets intero flycheck-haskell haskell-mode restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy)))
+    (geiser slime indium pipenv zeal-at-point helpful restart-emacs fireplace nov persistent-scratch magit-todos treemacs treemacs-projectile counsel-dash counsel-tramp ivy company-auctex exec-path-from-shell smart-mode-line counsel counsel-etags counsel-projectile swiper nlinum smex flx-ido flycheck-clang-analyzer omnisharp projectile csharp-mode ag auto-compile highlight-thing smartparens elscreen company-c-headers ws-butler rainbow-delimiters irony-eldoc company-rtags company-irony-c-headers company-irony use-package ess-smart-underscore ess irony js2-mode pdf-tools auctex-latexmk latex-extra yaml-mode erc-colorize wakatime-mode haskell-snippets intero flycheck-haskell haskell-mode restclient flycheck-rust rust-mode rustfmt auto-package-update scala-mode paradox markdown-mode magit ensime elpy)))
  '(paradox-github-token t)
  '(pdf-view-display-size (quote fit-page))
  '(projectile-enable-idle-timer nil)
@@ -58,20 +60,22 @@
    (quote
     ("rebar.config" "project.clj" "build.boot" "deps.edn" "SConstruct" "pom.xml" "build.sbt" "gradlew" "build.gradle" ".ensime" "Gemfile" "requirements.txt" "setup.py" "tox.ini" "composer.json" "Cargo.toml" "mix.exs" "stack.yaml" "info.rkt" "DESCRIPTION" "TAGS" "GTAGS" "configure.in" "configure.ac" "cscope.out" "Assembly-CSharp.csproj")))
  '(projectile-tags-backend (quote auto))
+ '(python-shell-interpreter "python3")
+ '(safe-local-variable-values (quote ((TeX-master . t))))
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:family "Ubuntu Mono" :foundry "DAMA" :slant normal :weight normal :height 158 :width normal)))))
 
 (use-package auto-package-update)
-(auto-package-update-maybe)
-(auto-package-update-at-time "00:00")
-(setq auto-package-update-interval 1)
-(setq auto-package-update-delete-old-versions t)
-(setq auto-package-update-hide-results t)
+;;(auto-package-update-maybe)
+;;(auto-package-update-at-time "00:00")
+;;(setq auto-package-update-interval 1)
+;;(setq auto-package-update-delete-old-versions t)
+;;(setq auto-package-update-hide-results t)
 
 (add-to-list 'load-path "~/.emacs.d/elisp/")
 (add-to-list 'load-path "~/dotfiles/emacs/elisp/")
@@ -80,14 +84,14 @@
 
 (use-package ag :ensure t)
 ;;(use-package auctex :ensure t)
-(use-package auctex-latexmk :ensure t)
+;;(use-package auctex-latexmk :ensure t)
 (use-package auto-package-update :ensure t)
-(use-package company-auctex :ensure t)
+;;(use-package company-auctex :ensure t)
 (use-package company-irony :ensure t)
 (use-package company-irony-c-headers :ensure t)
 (use-package company-rtags :ensure t)
 (use-package counsel :ensure t)
-(use-package counsel-dash :ensure t)
+;;(use-package counsel-dash :ensure t)
 (use-package counsel-projectile :ensure t)
 (use-package counsel-etags :ensure t)
 (use-package counsel-tramp :ensure t)
@@ -105,7 +109,7 @@
 (use-package ivy :ensure t)
 (use-package js2-mode :ensure t)
 (use-package magit :ensure t)
-(use-package nlinum :ensure t)
+;;(use-package nlinum :ensure t)
 (use-package omnisharp :ensure t)
 (use-package pdf-tools :ensure t)
 (use-package projectile :ensure t)
@@ -116,10 +120,21 @@
 (use-package wakatime-mode :ensure t)
 (use-package ws-butler :ensure t)
 (use-package yaml-mode :ensure t)
+(use-package indium
+  :ensure t
+  :hook (((js2-mode typescript-mode) . indium-interaction-mode)))
 (use-package git-gutter-fringe :ensure t)
 (use-package nov :ensure t)
+(use-package pipenv
+  :hook (python-mode . pipenv-mode)
+  :init
+  (setq
+   pipenv-projectile-after-switch-function
+   #'pipenv-projectile-after-switch-extended))
 (use-package persistent-scratch :ensure t)
-
+(use-package restart-emacs :ensure t)
+(use-package helpful :ensure t)
+(use-package zeal-at-point :ensure t)
 (use-package treemacs
   :ensure t
   :defer t)
@@ -131,7 +146,7 @@
     (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
   )
 
-(elscreen-start)
+;; (elscreen-start)
 
 (add-hook 'after-init-hook 'global-company-mode)
 
@@ -140,11 +155,13 @@
 
 (load "~/dotfiles/emacs/init_private.el")
 
-(setq global-wakatime-mode t)
+(setq global-wakatime-mode nil)
 (global-flycheck-mode)
 
 (require 'highlight-thing)
 (add-hook 'prog-mode-hook 'highlight-thing-mode)
+
+;; (add-hook 'prog-mode-hook 'wakatime-mode)
 
 (setq highlight-thing-exclude-thing-under-point t)
 (setq highlight-thing-case-sensitive-p t)
@@ -239,10 +256,19 @@
 (global-set-key (kbd "C-c p") 'windmove-up)
 (global-set-key (kbd "C-c n") 'windmove-down)
 
+(global-set-key (kbd "C-h f") #'helpful-callable)
+
+(global-set-key (kbd "C-h v") #'helpful-variable)
+(global-set-key (kbd "C-h k") #'helpful-key)
+
+(global-set-key (kbd "C-c C-d") #'helpful-at-point)
+
+(global-set-key "\C-cd" 'zeal-at-point)
+
 (setq gc-cons-threshold (eval-when-compile (* 1024 1024 1024)))
 (run-with-idle-timer 2 t (lambda () (garbage-collect)))
 
-(add-hook 'prog-mode-hook 'nlinum-mode)
+(add-hook 'prog-mode-hook 'linum-mode)
 
 (add-hook 'prog-mode-hook #'ws-butler-mode)
 
@@ -255,3 +281,11 @@
 (persistent-scratch-setup-default)
 
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+
+(require 'geiser)
+
+(setq geiser-active-implementations '(mit))
+
+(defun geiser-save ()
+  (interactive)
+  (geiser-repl--write-input-ring))
